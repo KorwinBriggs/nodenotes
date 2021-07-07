@@ -1,2 +1,0 @@
-This file is a test.
-This second line is a further test.

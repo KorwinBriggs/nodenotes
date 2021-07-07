@@ -18,31 +18,57 @@ const yar = yargs(hideBin(process.argv))
 yar.command({
         command: "add",
         describe: "Add a new note",
-        handler: () => {
-            console.log("Note added")
-         }
+        builder: {
+            title: {
+                describe: 'Note title',
+                demandOption: true,
+                type: 'string',
+            },
+            body: {
+                describe: 'Note content',
+                demandOption: true,
+                type: 'string',
+            }
+        },
+        handler(argv) {
+            notes.addNote(argv.title, argv.body)
+        }
     })
     .command({
         command: "remove",
         describe: "Remove a note",
-        handler: () => {
-            console.log("Note removed")
-         }
+        builder: {
+            title: {
+                describe: 'Note title',
+                demandOption: true,
+                type: 'string',
+            }
+        },
+        handler(argv) {
+            notes.removeNote(argv.title)
+        }
     })
     .command({
         command: "list",
         describe: "Print list of notes",
-        handler: () => {
-            console.log("Listing notes...")
+        handler() {
+            notes.listNotes()
         }
     })
     .command({
         command: "read",
         describe: "Read a note",
-        handler: () => {
-            console.log("Displaying note...")
+        builder: {
+            title: {
+                describe: 'Note title',
+                demandOption: true,
+                type: 'string',
+            }
+        },
+        handler(argv) {
+            notes.readNote(argv.title)
         }
     })
-    .argv
+    .parse()
 
 // yargs().parse();
