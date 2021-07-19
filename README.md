@@ -1,2 +1,2 @@
 # nodenotes
-Node.js practice, tutorials, experiments 
+Officially a little CLI note-taking app, but actually a way of learning how yargs works.
