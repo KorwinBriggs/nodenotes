@@ -1,2 +1,2 @@
 # nodenotes
-Officially a little CLI note-taking app, but actually a way of learning how yargs works.
+Officially a little CLI note-taking app, but actually an excuse to learn how yargs works
