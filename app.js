@@ -9,12 +9,7 @@ import notes from './notes.js'
 
 const yar = yargs(hideBin(process.argv))
 
-// console.log(yargs(hideBin(process.argv)).argv)
-// yargs.length;
-// yargs().version()
-//commands: add, remove, read, list
 
-// create add command
 yar.command({
         command: "add",
         describe: "Add a new note",
@@ -28,10 +23,15 @@ yar.command({
                 describe: 'Note content',
                 demandOption: true,
                 type: 'string',
+            },
+            category: {
+                describe: 'Note category',
+                demandOption: false,
+                type: 'string'
             }
         },
         handler(argv) {
-            notes.addNote(argv.title, argv.body)
+            notes.addNote(argv.title, argv.body, argv.category)
         }
     })
     .command({
@@ -69,6 +69,28 @@ yar.command({
             notes.readNote(argv.title)
         }
     })
+    .command({
+        command: "categories",
+        describe: "List all categories",
+        handler () {
+            notes.listCategories();
+        }
+    })
+    .command({
+        command: "category",
+        describe: "List notes within category",
+        builder: {
+            title: {
+                describe: 'Note category title',
+                demandOption: true,
+                type: 'string',
+            }
+        },
+        handler (argv) {
+            notes.listCategory(argv.title)
+        }
+    })
+
     .parse()
 
 // yargs().parse();
